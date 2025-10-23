@@ -35,6 +35,9 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/IVAN/source/repos/DemoForRepeat/DemoForRepeat/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/IVAN/source/repos/DemoForRepeat/DemoForRepeat/BascketWindow.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/IVAN/source/repos/DemoForRepeat/DemoForRepeat/EditWIndow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

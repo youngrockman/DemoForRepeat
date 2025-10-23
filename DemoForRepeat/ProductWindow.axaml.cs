@@ -12,6 +12,7 @@ public partial class ProductWindow : Window
 {
     private readonly int _currentUserId;
     
+    
     public ProductWindow()
     {
         InitializeComponent();
@@ -23,7 +24,9 @@ public partial class ProductWindow : Window
         _currentUserId = userUserId;
          Get();
         LoadComboBox();
+        
     }
+    
 
 
     private void LoadComboBox()
@@ -124,5 +127,62 @@ public partial class ProductWindow : Window
             editWindow.Show();
             this.Close();
         }
+    }
+
+    private async void AddToOrderMenuItem_Click(object? sender, RoutedEventArgs e)
+    {
+        if (sender is MenuItem menuItem && menuItem.DataContext is Product product)
+        {
+            var context = new DemoContext();
+            
+            //Ищем текущий заказ
+            var currentOrder = context.Orders.FirstOrDefault(x => x.UserId == _currentUserId && x.OrderStatus == "Новый");
+
+            
+            if (currentOrder == null)
+            {
+                currentOrder = new Order
+                {
+                    UserId = _currentUserId,
+                    OrderStatus = "Новый",
+                    PickupPointId = 1
+                };
+                context.Orders.Add(currentOrder);
+                await context.SaveChangesAsync();
+            }
+        
+            
+            //Ищем текущий продукт в заказе
+            var existingProduct = context.OrdersProducts.FirstOrDefault(x => x.ProductId == product.ProductId && x.OrderId == currentOrder.OrderId);
+
+            if (existingProduct != null)
+            {
+                existingProduct.Quantity += 1;
+            }
+            else
+            {
+                var orderProduct = new OrdersProduct
+                {
+                    OrderId = currentOrder.OrderId,
+                    ProductId = product.ProductId,
+                    Quantity = 1
+                };
+                context.OrdersProducts.Add(orderProduct);
+            }
+        
+            await context.SaveChangesAsync();
+        }
+    }
+    
+
+    private void ViewOrderButton_Click(object? sender, RoutedEventArgs e)
+    {
+        var context = new DemoContext();
+        
+        var currentOrder = context.Orders.FirstOrDefault(x => x.UserId == _currentUserId && x.OrderStatus == "Новый");
+        
+        var basketWindow = new BascketWindow(_currentUserId, currentOrder.OrderId);
+        basketWindow.Show();
+        this.Close();
     }
 }

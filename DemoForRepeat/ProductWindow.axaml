@@ -16,16 +16,24 @@
             <ComboBox Width="150" Name="SortBox" Margin="5" SelectionChanged="SortBox_OnSelectionChanged"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Bottom">
-            <Button Content="Просмотр заказа" Margin="5"/>
+            <Button Content="Просмотр заказа" Margin="5" Click="ViewOrderButton_Click"/>
             <Button Content="Назад" Margin="5" Click="Back_Button"/>
             <Button Content="Добавить товар" Margin="5" Click="AddProdcutClick"/>
         </StackPanel>
         <ListBox Name="ProductBox" DoubleTapped="ProductListBox_Click">
             <ListBox.ItemTemplate>
                 <DataTemplate>
+                    <ListBoxItem>
+                        <ListBoxItem.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Добавить к заказу" Click="AddToOrderMenuItem_Click" />
+                            </ContextMenu>
+                        </ListBoxItem.ContextMenu>
+                        
+                    
                     <Border BorderBrush="Black" BorderThickness="1">
                     <DockPanel>
-                            <Image Source="{Binding ParseImage}" Width="80" Height="80" Margin="5" DockPanel.Dock="Left"/>
+                        <Image Source="{Binding ParseImage}" Width="80" Height="80" Margin="5" DockPanel.Dock="Left"/>
                             <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5" DockPanel.Dock="Right">
                                 <TextBlock Text="{Binding ProductName, StringFormat='Название продукта: {0}'}" Margin="5"/>
                                 <TextBlock Text="{Binding Description, StringFormat='Описание продукта: {0}'}" Margin="5"/>
@@ -34,6 +42,7 @@
                             </StackPanel>
                     </DockPanel>
                     </Border>
+                    </ListBoxItem>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

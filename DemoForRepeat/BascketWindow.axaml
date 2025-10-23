@@ -1,0 +1,39 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DemoForRepeat.BascketWindow"
+        x:CompileBindings="False"
+        Title="Корзина заказа">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top">
+            <TextBlock Text="Ваш заказ" FontSize="16" FontWeight="Bold"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Bottom">
+            <Button Content="Оформить заказ" Margin="5"/>
+            <Button Content="Назад к товарам" Margin="5" Click="BackToProducts_Click"/>
+        </StackPanel>
+
+        <ListBox Name="OrderItemsListBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="2">
+                        <DockPanel>
+                            <Image Source="{Binding Product.ParseImage}" Width="80" Height="80" Margin="5" DockPanel.Dock="Left"/>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                <TextBlock Text="{Binding Product.ProductName}" FontWeight="Bold" Margin="2"/>
+                                <TextBlock Text="{Binding Product.Description}" Margin="2" TextWrapping="Wrap"/>
+                                <TextBlock Text="{Binding Product.Price, StringFormat='Цена: {0} руб.'}" Margin="2"/>
+                                <TextBlock Text="{Binding Quantity, StringFormat='Количество: {0}'}" Margin="2"/>
+                                <TextBlock Text="{Binding TotalPrice, StringFormat='Сумма: {0} руб.'}" Margin="2" FontWeight="Bold"/>
+                                <Button Content="Удалить из заказа" Click="RemoveItem_Click" Tag="{Binding OrderProductId}"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>
