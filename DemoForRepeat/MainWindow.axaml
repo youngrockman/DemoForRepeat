@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DemoForRepeat.MainWindow"
+        Title="Окно авторизации">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top">
+            <TextBlock Text="Добро пожаловать в «Книжный клуб»"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Bottom">
+            <Button Content="Авторизироваться" Margin="5" Click="Authorized_Button"/>
+            <Button Content="Закрыть программу" Margin="5" Click="CloseProgramm_Button"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+            <TextBox Watermark="Email" Name="LoginBox" Margin="5" Width="150"/>
+            <TextBox Watermark="Password" Name="PasswordBox" Margin="5" Width="150"/>
+        </StackPanel>
+    </DockPanel>
+</Window>

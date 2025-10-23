@@ -1,0 +1,41 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DemoForRepeat.ProductWindow"
+        x:CompileBindings="False"
+        Title="Окно просмотра продуктов">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top">
+            <TextBox Name="SearchBox" Watermark="Поиск..." Margin="5" Width="150" KeyUp="SearchBox_OnKeyUp"/>
+            <ComboBox Name="OrderBox" Width="150" Margin="5" SelectionChanged="OrderBox_OnSelectionChanged">
+                <ComboBoxItem>по возрастанию</ComboBoxItem>
+                <ComboBoxItem>по убыванию</ComboBoxItem>
+            </ComboBox>
+            <ComboBox Width="150" Name="SortBox" Margin="5" SelectionChanged="SortBox_OnSelectionChanged"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Bottom">
+            <Button Content="Просмотр заказа" Margin="5"/>
+            <Button Content="Назад" Margin="5" Click="Back_Button"/>
+            <Button Content="Добавить товар" Margin="5" Click="AddProdcutClick"/>
+        </StackPanel>
+        <ListBox Name="ProductBox" DoubleTapped="ProductListBox_Click">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="Black" BorderThickness="1">
+                    <DockPanel>
+                            <Image Source="{Binding ParseImage}" Width="80" Height="80" Margin="5" DockPanel.Dock="Left"/>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5" DockPanel.Dock="Right">
+                                <TextBlock Text="{Binding ProductName, StringFormat='Название продукта: {0}'}" Margin="5"/>
+                                <TextBlock Text="{Binding Description, StringFormat='Описание продукта: {0}'}" Margin="5"/>
+                                <TextBlock Text="{Binding Price, StringFormat='Цена продукта: {0} руб.'}" Margin="5"/>
+                                <Button Tag="{Binding ProductId}" Content="Удалить" Click="DeleteProduct_Click"/>
+                            </StackPanel>
+                    </DockPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>

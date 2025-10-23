@@ -1,0 +1,25 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="DemoForRepeat.AddProductWindow"
+        Title="Добавление нового продукта">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Top">
+            <TextBlock Text="Создание нового продукта" Margin="5" HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Bottom">
+            <Button Content="Назад" Margin="5" Click="Back_Click" />
+            <Button Content="Добавить товар" Margin="5" Click="AddProduct_Click" />
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+            <TextBox Name="NameBox" Watermark="Название" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Name="DecriptionBox" Watermark="Описание" Margin="5" VerticalAlignment="Center"/>
+            <TextBox Name="PriceBox" Watermark="Цена" Margin="5" VerticalAlignment="Center"/>
+            <ComboBox Name="ManufacturerBox"  Margin="5" VerticalAlignment="Center" Width="150" />
+            <Image Name="NewImageBox" Width="80" Height="80" Margin="5"/>
+            <Button Content="Добавить картинку" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Click="AddImage_Click"/>
+        </StackPanel>
+    </DockPanel>
+</Window>
