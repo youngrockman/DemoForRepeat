@@ -14,6 +14,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5" DockPanel.Dock="Bottom">
             <Button Content="Оформить заказ" Margin="5"/>
             <Button Content="Назад к товарам" Margin="5" Click="BackToProducts_Click"/>
+            <TextBlock Text="" Name="AllPriceBox" Margin="5"/>
         </StackPanel>
 
         <ListBox Name="OrderItemsListBox">

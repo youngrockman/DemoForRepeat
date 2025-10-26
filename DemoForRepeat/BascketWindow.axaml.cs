@@ -31,6 +31,7 @@ public partial class BascketWindow : Window
         var context = new DemoContext();
         var orderItems =  context.OrdersProducts.Where(x=>x.OrderId == _orderId).Include(x=>x.Product).Select(x=> new
         {
+            x.OrderProductId,
             x.Product,
             x.Quantity,
             TotalPrice = x.Product.Price * x.Quantity
@@ -38,6 +39,9 @@ public partial class BascketWindow : Window
         
         
         OrderItemsListBox.ItemsSource = orderItems;
+        
+        decimal totalOrderPrice  = orderItems.Sum(x=>x.TotalPrice);
+        AllPriceBox.Text = $"Общая сумма: {totalOrderPrice} руб.";
     }
 
     private async void RemoveItem_Click(object? sender, RoutedEventArgs e)
@@ -62,6 +66,8 @@ public partial class BascketWindow : Window
         productWindow.Show();
         this.Close();
     }
+
+
 
     
     
